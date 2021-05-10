@@ -45,6 +45,7 @@ function FoodAiScreen() {
     setSend(true)
     console.log("send_true : ",send);
     // sending data to machine learning model 
+    //test
     const headers = {
         'accept' : 'application/json'
     }
