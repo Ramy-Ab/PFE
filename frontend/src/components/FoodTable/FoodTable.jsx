@@ -56,6 +56,7 @@ class Basket extends React.Component {
     let items = [];
     this.state.items.map(item => {
       items.push(<Item 
+                   result={this.props.result}
                    name={item.name}
                    calories={item.calories}
                    carbs={item.carbohydrates_total_g}
@@ -94,6 +95,7 @@ class Basket extends React.Component {
   
 
   render() {
+    console.log("im gonna update");
     const {result} = this.props;
     console.log(result)
     
@@ -102,7 +104,7 @@ class Basket extends React.Component {
     return (
       <div className="basket">
         {console.log("im in child",this.result)}
-        <Search sendValue={this.storeValue} sendEnter={this.storeClick} sendClick={this.storeClick} />
+        <Search result={result} sendValue={this.storeValue} sendEnter={this.storeClick} sendClick={this.storeClick} />
         
         <div className='items'>
           { allItems.length === 0 ? <div className='error'>No food found... <i class="fas fa-pizza-slice"></i></div> : allItems }
@@ -130,6 +132,8 @@ class Search extends React.Component {
   }
   
   render() {
+    
+    
     return (
       <div className="search">
         <div className='search-box'>
@@ -146,6 +150,9 @@ class Search extends React.Component {
 class Item extends React.Component {
   
   render() {
+    const {result} = this.props;
+    console.log("result in iTEM !!!",result)
+    console.log("Item component updated");
     return (
       <div className='item'>
         <div className='item-top'>

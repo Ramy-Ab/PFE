@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import ImageLinkForm from "../components/ImageLinkForm/ImageLinkForm";
 import Particles from "react-particles-js";
 import FoodRecognition from "../components/FoodRecognition/FoodRecognition";
@@ -12,9 +12,10 @@ import image4 from "../images/Image4.jpeg";
 import image5 from "../images/Image5.jpeg";
 import image6 from "../images/Image6.jpeg";
 import upload from "../images/upload-photo.png";
+import analimg from "../images/analytique.png";
 import { Button,Alert,Spinner } from "react-bootstrap";
 import axios from 'axios'
-import FoodTable from "../components/FoodTable/FoodTable";
+import FoodTableR from "../components/FoodTableR/FoodTableR";
 
 function FoodAiScreen() {
   const [result,setResult] = useState('');
@@ -22,14 +23,14 @@ function FoodAiScreen() {
   const [imageUrl, setImageUrl] = useState("");
   const [input, setInput] = useState("");
   const [send,setSend] = useState(false)
-  const imageToSend = useRef();
+
 
   const blobToBase64 = (blob) => {
     const reader = new FileReader();
     reader.readAsDataURL(blob);
     return new Promise((resolve) => {
       reader.onloadend = () => {
-        resolve(reader.result);
+        resolve(reader.result); 
       };
     });
   };
@@ -76,6 +77,10 @@ function FoodAiScreen() {
 
 
   };
+
+  const imageHandler =(e) => {
+    console.log(e.target.files[0]);
+  }
 
   const onInputChange = (e) => {
     setInput(e.target.value);
@@ -210,7 +215,9 @@ function FoodAiScreen() {
                 </div>
 
                 <div className="col-sm-6  col-xs-12 feature">
-                  <span className="cm-premium-HRreport icon"></span>
+                  <span className="cm-premium-HRreport icon">
+                   
+                  </span>
                   <h2>Rapid Analysis</h2>
                   <p>
                     Within a second a photo can become a highly detailed food
@@ -236,11 +243,11 @@ function FoodAiScreen() {
                     style={{ display: { display } ? "block" : "none" }}
                   >
                     <img src={upload} />
-                    <input {...getInputProps()} onChange={uploadImage} />
+                    <input {...getInputProps()}  />
                     {isDragAActive ? (
                       <p>Drop the Image here ...</p>
                     ) : (
-                      <p>Drag n drop Image here</p>
+                      <p>Add your image here  </p>
                     )}
                   </div>}
                   <h3>{result}</h3>
@@ -271,17 +278,18 @@ function FoodAiScreen() {
                     {isDragAActive ? (
                       <p>Drop the Image here ...</p>
                     ) : (
-                      <p onClick={hideDropBox} style={{ color: "white", marginBottom: "0" }}>
+                      <p style={{ color: "white", marginBottom: "0" }}>
                         Upload{" "} 
                       </p>
                     )}
                   </a>
+                  
                   <Button variant="primary" onClick={onUploadButton}>
                   {send && <Spinner
                     as="span"
                     animation="grow"
                     size="sm"
-                    role="status"
+                    role="status" 
                     aria-hidden="true"
                   />}{'    '}
                     {send ? '...Loading' : 'Send'}
@@ -292,8 +300,7 @@ function FoodAiScreen() {
 
                   <p clas="notice">
                     Note: By uploading files here you agree to have them
-                    temporarily stored in our training dataset for the sole
-                    purpose of improving Azumio's technology.
+                    temporarily stored in our training dataset to make it better for you 
                   </p>
                 </div>
                 <div className="url-section">URL Section</div>
@@ -330,7 +337,7 @@ function FoodAiScreen() {
                 <div className="col-xs-12">
                     <h5>result</h5>
                     {console.log("im in parent",result)}
-                    <FoodTable result={result} />
+                    <FoodTableR result={result} />
                   </div>  
                 
                   <div className="col-xs-12">
@@ -348,12 +355,12 @@ function FoodAiScreen() {
                   <div className="col-xl-6">
                     <img src={image4} />
                   </div>
-                  <div className="col-xl-6">
+                  {/* <div className="col-xl-6">
                     <img src={image5} />
                   </div>
                   <div className="col-xl-6">
                     <img src={image6} />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
