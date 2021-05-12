@@ -3,6 +3,7 @@ import ImageLinkForm from "../components/ImageLinkForm/ImageLinkForm";
 import Particles from "react-particles-js";
 import FoodRecognition from "../components/FoodRecognition/FoodRecognition";
 import { useDropzone } from "react-dropzone";
+import {Link} from 'react-scroll'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./FoodAiScreen.css";
 import image1 from "../images/Image1.jpeg";
@@ -16,6 +17,7 @@ import analimg from "../images/analytique.png";
 import { Button,Alert,Spinner } from "react-bootstrap";
 import axios from 'axios'
 import FoodTableR from "../components/FoodTableR/FoodTableR";
+
 
 function FoodAiScreen() {
   const [result,setResult] = useState('');
@@ -143,15 +145,16 @@ function FoodAiScreen() {
                                  value_area: 700  
                             }
                           },
-                          color : "#000000",
+                          color : "#ff0000",
                           line_linked: {
                               
             				shadow: {
-            					enable: true,
-            				    color: "#000000",
+            					enable: false,
+            				    color: "#ff0000",
             					blur: 5
             				}
-            			}
+            			},
+                          
                           
             		}
             	}}
@@ -162,7 +165,7 @@ function FoodAiScreen() {
                     right: "0",
                     bottom: "0",
                     left: "0",
-                    // z-index: "-1", 
+                    // z-index: "-1"
                   }}
               
             />
@@ -174,16 +177,20 @@ function FoodAiScreen() {
               <div className="row">
                 <div className="col-sm-12 features">
                   <h1>Features</h1>
-                  <a href="#try" className="button button-big animate-scroll">
-                    Try Food AI{" "}
-                  </a>
+                  <Link to='try' smooth={true} duration={1000}>
+                    <div className='pr-btns'>
+                      <span  className=' button-big animate-scroll pr-btn pr-btn-foodai ' >Try Food AI</span>
+                    </div>
+                  </Link>
+                  
+
+                
                   <hr />
                 </div>
               </div>
               <div className="row feature-list">
                 <div className="col-sm-6 col-xs-12 feature">
-                  <span className="cm-smart-food-1 icon"></span>
-
+                <i class="fas fa-search"></i>
                   <h2>Precise Recognition of Food</h2>
                   <p>
                     <b>Food AI</b> API utilizes highly trained models that are
@@ -194,7 +201,7 @@ function FoodAiScreen() {
                 </div>
 
                 <div className="col-sm-6  col-xs-12 feature">
-                  <span className="cm-smart-food-2 icon"></span>
+                <i class="fas fa-atom"></i>
                   <h2>Perpetually Evolving Food Identification</h2>
                   <p>
                     Food AI API is developed with the latest in machine learning
@@ -206,7 +213,7 @@ function FoodAiScreen() {
               </div>
               <div className="row feature-list">
                 <div className="col-sm-6  col-xs-12 feature">
-                  <span className="cm-smart-food-3 icon"></span>
+                <i class="fas fa-pizza-slice"></i>
                   <h2>Highly Diverse Food Database</h2>
                   <p>
                     Our database encompasses many regional and ethnic specialty
@@ -216,9 +223,7 @@ function FoodAiScreen() {
                 </div>
 
                 <div className="col-sm-6  col-xs-12 feature">
-                  <span className="cm-premium-HRreport icon">
-                   
-                  </span>
+                <i class="fas fa-chart-bar"></i>
                   <h2>Rapid Analysis</h2>
                   <p>
                     Within a second a photo can become a highly detailed food
